@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/apple/Desktop/Personal/Pub-Sub-Protocol-for-audio-video-streaming/udp-cpp",
+      "program": "/Users/apple/Desktop/Personal/Pub-Sub-Protocol-for-audio-video-streaming/udp-cpp/build/Debug/outDebug"
+    }
+  ]
+}
