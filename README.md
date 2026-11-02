@@ -21,9 +21,6 @@ Publisher ──packets──▶  BROKER  ──packets──▶ Subscriber A
 | `wireshark/pubsub.lua` | Wireshark plugin that decodes our packets field by field. |
 | `frames/` | 20 sample PNG frames. |
 | `Makefile` | `make` builds everything, `make clean` removes the build. |
-| `Computer netweroking pub-sub model.pdf` | Original design notes (if present). |
-
-The earlier Java/TCP version is in git history (commit `3a1bb11`).
 
 ## Run it
 
@@ -129,15 +126,14 @@ lldb ./broker
 (lldb) frame variable pkt      # look at the packet that just arrived
 ```
 
-## UDP vs TCP (compared with the old Java version)
+## Why UDP and not TCP
 
-| | TCP (Java version) | UDP (this version) |
+| | TCP | UDP (what we use) |
 |---|---|---|
-| Connection | accept() and a thread per client | none, one socket |
-| Message boundaries | none, needed framing | kept: one sendto = one recvfrom |
+| Connection | `listen()` + `accept()`, usually a thread per client | none, one socket for everyone |
+| Message boundaries | none (byte stream), the app must add framing | kept: one `sendto` = one `recvfrom` |
 | Lost data | resent automatically | stays lost |
 | Order | guaranteed | not guaranteed |
-| Late joiners | got cached frames | only get live data |
 
 ## What to remember
 
